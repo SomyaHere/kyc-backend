@@ -11,8 +11,11 @@ const app = express();
 // Middleware to parse JSON and URL-encoded bodies
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({ origin: 'http://localhost:3000' })); // allow frontend requests
-
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}))
 const port = process.env.PORT || 5001;
 
 // MongoDB connection function
